@@ -6,8 +6,8 @@ interface WinScreenProps {
   isOpen: boolean
   startWord: string
   goalWord: string
-  time?: string
-  bestPath?: any
+  time: string
+  bestPath?: string
   transversed: number
   difficulty: string
   path: string
@@ -68,10 +68,10 @@ const WinScreen:React.FC<WinScreenProps> = ({
               <h1 className='text-4xl flex-shrink'><span className='font-semibold'>{startWord}</span> ---------{`>`} <span className='font-semibold'>{goalWord}</span></h1>
               <div className='flex-grow flex flex-col gap-6 px-10 justify-center items-center'>
                 <Line label='Difficulty' value={difficulty}/>
-                <Line label='Time' value={time ? time : "0:00:00"}/>
+                <Line label='Time' value={time!=="" ? time : "Error Fetching Time"}/>
                 <Line label='Words Transversed' value={transversed}/>
                 <Line label='Path' value={path}/>
-                <Line label='Best Path' value={bestPath ? bestPath : "???"}/>
+                {bestPath && <Line label='Best Path' value={bestPath}/>}
               </div>
               <div className='flex-shrink w-full flex flex-row justify-center items-center gap-14 px-10'>
                 <button className='p-4 border-2 rounded-3xl border-blue-500 bg-blue-500 flex-1 text-white flex flex-row justify-center items-center gap-4' onClick={handleShare}>
@@ -90,7 +90,7 @@ const WinScreen:React.FC<WinScreenProps> = ({
 
 interface LineProps {
   label: string
-  value: any
+  value: string | number
 }
 
 const Line:React.FC<LineProps> = ({

@@ -14,7 +14,7 @@ const Sidebar:React.FC<SidebarProps> = ({
 
     return (
         <div className='
-            flex flex-col w-[19.25rem] h-fit mt-32 justify-start gap-3 sticky top-14
+            flex flex-col w-[19.25rem] h-full justify-start gap-3
         '>
             {Object.keys(data[1]).map((type) =>(
                 <Cluster type={type} clickable={clickable} key={data[0] + type} data={data} />

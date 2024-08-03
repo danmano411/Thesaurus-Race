@@ -18,6 +18,7 @@ const App = () => {
   const [transversed, setTransversed] = useState(0);
   const [path, setPath] = useState("")
   const [startTime, setStartTime] = useState(-1);
+  const [totalTime, setTotalTime] = useState("");
 
   const searchBarRef = useRef<HTMLInputElement>(null);
   
@@ -152,13 +153,13 @@ const App = () => {
         <button className="flex-shrink py-2 px-10 rounded-2xl border-red-400 text-red-400 font-semibold border-2" onClick={handleTypeToggle}>Toggle (Left Ctrl)</button>
         <button className="flex-shrink py-2 px-10 rounded-2xl border-green-400 text-green-400 font-semibold border-2" onClick={handleGeneration}>Generate (Right Ctrl)</button>
         <button className={`flex-shrink py-2 px-10 rounded-2xl ${pathIsOpen ? 'bg-yellow-400 text-white' : 'text-yellow-400 bg-white'} border-yellow-400  font-semibold border-2`} onClick={() => {setPathIsOpen(value => !value)}}>Path (Right Alt)</button>
-        {startTime !== -1 && <Timer startTime={startTime}/>}
+        {startTime !== -1 && <Timer startTime={startTime} active={!winScreenIsOpen} setTimeCallback={setTotalTime}/>}
       </div>
 
       {wordInfo &&
        <>
-          <div className='flex flex-row w-full pr-[20rem] pt-10 pb-14'>
-            <div className='flex-shrink w-[24rem] relative'>
+          <div className='flex flex-row w-full pr-[20rem] pt-10 pb-14 relative gap-2'>
+            <div className='flex-shrink w-[24rem] h-full max-h-screen sticky top-0 mt-32 overflow-auto'>
                 <Sidebar clickable={true} wordInfo={wordInfo}/>
             </div>
             <WordInfoMain toggle={toggle} wordInfo={wordInfo} handleTermCallback={termCallback} />
@@ -175,6 +176,7 @@ const App = () => {
         isOpen={winScreenIsOpen} 
         startWord={startWord} 
         goalWord={goalWord} 
+        time={totalTime}
         transversed={transversed} 
         difficulty="Normal" 
         closeCallback={closeWinScreenCallback} 
