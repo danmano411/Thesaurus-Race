@@ -8,10 +8,10 @@ This projects current state is functional but nowhere near finished. Feel free t
 The words and definitions are scraped from [https://www.thesaurus.com/](thesaurus.com).
 
 ## Setup
-Navigate to the app directory and run the command:
+Navigate to the `app` directory and run the command:
 ### `npm start` 
 
-Then, navigate to the server directory and run:
+Then, navigate to the `server` directory and run:
 ### `python server.py`
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -24,7 +24,9 @@ The left panel will show different definitions of a word that you can click and 
 **Be sure you know what word you are going to by opening the path window (Right ALT)**
 
 Left CTRL - Toggles between synonyms and antonyms
+
 Right ALT - Shows the "path" aka the goal word you must reach (must be exact word)
+
 Right CTRL - Resets the game with two different words (try resetting until you get an achievable word)
 
 When you win, a win screen will pop up with your start and end words, your path, your time, and the difficulty (default normal).
@@ -41,5 +43,7 @@ Flask
 
 ### Upcoming
 Material UI
+
 .NET
+
 Azure SQL Database
