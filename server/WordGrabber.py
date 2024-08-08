@@ -5,7 +5,7 @@ def getWords():
     wordList = []
     index = 0
 
-    with open('words.csv', newline='') as csvfile:
+    with open('merged.txt', newline='') as csvfile:
         data = csv.reader(csvfile, delimiter=',')
         for row in data:
             if (index != 0):

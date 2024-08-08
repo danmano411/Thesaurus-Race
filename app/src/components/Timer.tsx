@@ -28,7 +28,7 @@ const Timer:React.FC<TimerProps> = ({
         setSeconds(Math.floor((time / 1000) % 60));
         setMilliseconds(Math.floor(time % 1000 /10))
 
-        console.log(Date.now());
+        // console.log(Date.now());
     };
 
     const resetTimer = () => {
@@ -53,10 +53,10 @@ const Timer:React.FC<TimerProps> = ({
             if (hours < 10){
                 time += "0";
             }
-            time += hours.toString() + " : ";
-            if (minutes < 10){
-                time += "0";
-            }
+            // time += hours.toString() + " : ";
+            // if (minutes < 10){
+            //     time += "0";
+            // }
             time += minutes.toString() + " : ";
             if (seconds < 10){
                 time += "0";
@@ -72,11 +72,12 @@ const Timer:React.FC<TimerProps> = ({
     }, [active]);
 
     return (
-        <div className='flex-shrink w-1/12 py-2 px-2 flex flex-row justify-between items-center rounded-2xl border-2 border-black font-semibold gap-1 text-center'>            
-            <h1 className='flex-1'>{hours>=10 ? hours : '0'+hours}</h1>:
-            <h1 className='flex-1'>{minutes>=10 ? minutes : '0'+minutes}</h1>:
-            <h1 className='flex-1'>{seconds>=10 ? seconds : '0'+seconds}</h1>:
-            <h1 className='flex-1'>{milliseconds>=10 ? milliseconds : '0'+milliseconds}</h1>
+        <div className='flex-shrink w-fit flex flex-row justify-between items-center gap-[2px] text-center text-4xl'>            
+            {/* <h1 className='flex-1'>{hours>=10 ? hours : '0'+hours}</h1>: */}
+            {/* <h1 className='flex-1'>{minutes>=10 ? minutes : '0'+minutes}</h1>: */}
+            <h1 className='flex-1'>{minutes}</h1>:
+            <h1 className='flex-1'>{seconds>=10 ? seconds : '0'+seconds}</h1>
+            {/* <h1 className='flex-1'>{milliseconds>=10 ? milliseconds : '0'+milliseconds}</h1> */}
         </div>
     )
 }

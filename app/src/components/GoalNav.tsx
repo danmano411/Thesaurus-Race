@@ -32,9 +32,9 @@ const GoalNav:React.FC<GoalNavProps> = ({
             <div className={`h-full w-1/5 bg-white fixed right-0 flex flex-col p-5 py-12 justify-center items-center gap-16
                 transition duration-200 ${isOpen ? 'translate-x-0' : 'translate-x-full'}
             `}>
-                <div className='flex-shrink'>
+                {/* <div className='flex-shrink'>
                     <h1 className='text-2xl'>{startWord} --{`>`} {goalWord}</h1>
-                </div>
+                </div> */}
                 <div className='flex-shrink flex flex-col justify-normal items-center gap-4'>
                     <h1 className='text-5xl font-normal'>{goalWord}</h1>
                     <Sidebar clickable={false} wordInfo={goalWordInfo}/>

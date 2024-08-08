@@ -4,6 +4,7 @@ type WordInfoMainProps = {
     wordInfo: any,
     toggle: string,
     handleTermCallback: any
+    toggleBody: React.ReactNode
 }
 
 const WordInfoMain = (props:WordInfoMainProps) => {
@@ -17,7 +18,10 @@ const WordInfoMain = (props:WordInfoMainProps) => {
   const relationType = props.toggle;
   return (
     <div className='w-full h-auto flex flex-col gap-14 flex-grow'>
-      <h1 className='text-6xl pl-1'>{data[0]}</h1>
+      <div className='w-full flex flex-row gap-8 justify-start items-end'>
+        <h1 className='text-6xl pl-1'>{data[0]}</h1>
+        {props.toggleBody}
+      </div>
       {Object.keys(data[1]).map((type) => (
         <div key={type} className='flex flex-col w-full gap-0'>
           {Object.keys(data[1][type]).map((meaning:string, index:number) => (
