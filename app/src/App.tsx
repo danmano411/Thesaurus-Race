@@ -8,6 +8,8 @@ const App = () => {
   const [searchInput, setSearchInput] = useState('');
   const [toggle, setToggle] = useState("Synonyms")
   const [pathIsOpen, setPathIsOpen] = useState(false);
+  // const coolDown = useRef(0);
+  const [coolDown, setCoolDown] = useState(0);
 
   const [startWord, setStartWord] = useState('game')
   const [goalWord, setGoalWord] = useState('game')
@@ -23,11 +25,15 @@ const App = () => {
   const [difficulty, setDifficulty] = useState<"Easy" | "Normal" | "Hard">("Hard");
 
   const searchBarRef = useRef<HTMLInputElement>(null);
-  
   useEffect(() => {
     setTimeout(() => {
       handleGeneration();
     }, 500);
+    setInterval(() => {
+      setCoolDown(prev => {
+        return prev-1;
+      })
+    }, 1)
   }, [])
 
   useEffect(() => {
@@ -57,7 +63,11 @@ const App = () => {
   }, [goalWord]);
 
   const handleGeneration = () => {
-    axios.get('/api/words')
+    // console.log(coolDown)
+    if (coolDown <= 0){
+      // console.log("FIRED")
+      setCoolDown(750);
+      axios.get('/api/words')
       .then((response: { data: React.SetStateAction<any>; }) => {
         if (response.data){
           setTerm(response.data[0]);
@@ -76,6 +86,7 @@ const App = () => {
         alert("Failed to Fetch Words " + error)
         setTerm('error')
       })
+    }
   }
 
   const handleInputChange = (event: { target: { value: string } }) => {
@@ -181,7 +192,8 @@ const App = () => {
           </div>
         </div>
         <CustomButton 
-          className="flex-shrink py-2 px-10 rounded-2xl border-green-400 text-black font-semibold border-2"
+          disabled={coolDown > 0 ? true : false}
+          className={`flex-shrink py-2 px-10 rounded-2xl ${coolDown <= 0 ? 'border-green-400' : 'border-neutral-500'} ${coolDown <= 0 ? 'text-black' : 'text-neutral-400'} font-semibold border-2`}
           onClick={handleGeneration}
           text='New Game'
           helperText='Right Ctrl'
